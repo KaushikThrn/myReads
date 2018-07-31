@@ -4,6 +4,12 @@ import * as BooksAPI from './BooksAPI'
 import Shelf from './Shelf'
 
 class BooksApp extends React.Component {
+  Books={
+    book_title:'The Hobbit',
+    book_authors:'J.R.R. Tolkien',
+    backgroundImage: "http://books.google.com/books/content?id=pD6arNyKyi8C&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE70Rw0CCwNZh0SsYpQTkMbvz23npqWeUoJvVbi_gXla2m2ie_ReMWPl0xoU8Quy9fk0Zhb3szmwe8cTe4k7DAbfQ45FEzr9T7Lk0XhVpEPBvwUAztOBJ6Y0QPZylo4VbB7K5iRSk&source=gbs_api"
+
+  }
   state = {
     /**
      * TODO: Instead of using this state variable to keep track of which page
@@ -21,9 +27,7 @@ class BooksApp extends React.Component {
             <div className="list-books-title">
               <h1>MyReads</h1>
           </div>
-             <Shelf title="Currently Reading" />
-             <Shelf title="Want to Read" />
-             <Shelf title="Read" /> 
+             <Shelf title="Currently Reading" Books={this.Books}/>
       </div>
     </div>
     )
