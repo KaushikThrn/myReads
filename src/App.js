@@ -26,17 +26,23 @@ class BooksApp extends React.Component {
     BooksAPI.getAll().then((books) => {
       this.setState({books_list:books})
     })
-  }
+}
   
+
   render() {
-    const {books_list}=this.state
+    const {books_list}=this.state;
+    let isLength=this.state.books_list.length > 0;
     return (
       <div className="app">
           <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
-          </div> {this.state.books_list.length > 0 &&
-             <Shelf title="Currently Reading" Books={books_list}/>}
+          </div> {isLength ? <div>
+           <Shelf title="Currently Reading" Books={books_list}/> 
+           <Shelf title="Want to Read" Books={books_list}/> 
+           <Shelf title="Read" Books={books_list}/></div>:<div>Loading</div>}
+       
+
       </div>
     </div>
     )
