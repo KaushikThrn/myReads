@@ -36,7 +36,7 @@ class BooksApp extends React.Component {
             <div className="list-books-title">
               <h1>MyReads</h1>
           </div> {this.state.books_list.length > 0 &&
-             <Shelf title="Currently Reading" Books={books_list[0]}/>}
+             <Shelf title="Currently Reading" Books={books_list}/>}
       </div>
     </div>
     )
