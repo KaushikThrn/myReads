@@ -4,11 +4,19 @@ import * as BooksAPI from './BooksAPI'
 import Book from './Book.js'
 
 class Shelf extends React.Component{
+	constructor(props){
+		super(props);
+		this.props=props
+		this.changeShelf=this.changeShelf.bind(this)
+	}
 	state={}
 	shelf_type={
 		"Currently Reading":"currentlyReading",
 		"Want to Read":"wantToRead",
 		"Read":"read"
+	}
+	changeShelf=(shelf_name,title)=>{
+         this.props.changeShelfValue(shelf_name,title)
 	}
 	render(){
 		return(
@@ -19,7 +27,7 @@ class Shelf extends React.Component{
 			{this.props.Books.map((book)=>(
                book.shelf===this.shelf_type[this.props.title]?
                <li>
-               <Book Books={book} changeValue={this.props.changeShelf}/>
+               <Book Books={book} changeValueShelf={this.changeShelf}/>
 			   </li>:null
 			))}
 			 </ol>

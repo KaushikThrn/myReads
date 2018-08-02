@@ -3,11 +3,15 @@ import './App.css'
 import * as BooksAPI from './BooksAPI'
 
 class Book extends React.Component{
+  constructor(props){
+    super(props);
+    this.props=props;
+    this.changeTypeShelf=this.changeTypeShelf.bind(this);
+  }
 
-	state={}
-	changeType=(event,title)=>{
-	   console.log(title)
-       this.props.changeValue(title)
+	changeTypeShelf=(event,title)=>{
+	   console.log(event.target.value)
+       this.props.changeValueShelf(event.target.value,title)
 	}
 	render(){
 		const {Books}=this.props
@@ -17,7 +21,7 @@ class Book extends React.Component{
                           <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 192, backgroundImage:`url(${Books.imageLinks.thumbnail})` }}></div>
                             <div className="book-shelf-changer">
-                              <select onChange={(e)=>{this.changeValue(e,Books.title)}}>
+                              <select onChange={(e)=>{this.changeTypeShelf(e,Books.title)}}>
                                 <option value="move" disabled>Move to...</option>
                                 <option value="currentlyReading" >Currently Reading</option>
                                 <option value="wantToRead" >Want to Read</option>
