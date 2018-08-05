@@ -10,7 +10,6 @@ class Book extends React.Component{
   }
 
 	changeTypeShelf=(event,title)=>{
-	   console.log(event.target.value)
        this.props.changeValueShelf(event.target.value,title)
 	}
 	render(){

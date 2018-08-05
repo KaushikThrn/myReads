@@ -29,7 +29,6 @@ class BooksApp extends React.Component {
 }
 
 changeShelf=(shelf_name,title)=>{
-  //console.log("here in app.js",title)
   let booksCopy=this.state.books_list
    booksCopy.map((book)=>{
      if(book.title===title){
