@@ -28,14 +28,15 @@ class BooksApp extends React.Component {
     })
 }
 
-changeShelf=(eventValue,title)=>{
-  console.log(title)
-   this.state.books_list.map((book)=>{
+changeShelf=(shelf_name,title)=>{
+  let booksCopy=this.state.books_list
+   booksCopy.map((book)=>{
      if(book.title===title){
-         book.shelf=eventValue
+         book.shelf=shelf_name
      }
 
    })
+   this.setState({books_list:booksCopy})
 }
 
   render() {
@@ -47,9 +48,9 @@ changeShelf=(eventValue,title)=>{
             <div className="list-books-title">
               <h1>MyReads</h1>
           </div> {isLength ? <div>
-           <Shelf title="Currently Reading" Books={books_list} changeShelf={this.changeShelfValue}/> 
-           <Shelf title="Want to Read" Books={books_list} changeShelf={this.changeShelfValue}/> 
-           <Shelf title="Read" Books={books_list} changeShelf={this.changeShelfValue}/></div>:<div>Loading</div>}
+           <Shelf title="Currently Reading" Books={books_list} changeShelfValue={this.changeShelf}/> 
+           <Shelf title="Want to Read" Books={books_list} changeShelfValue={this.changeShelf}/> 
+           <Shelf title="Read" Books={books_list} changeShelfValue={this.changeShelf}/></div>:<div>Loading</div>}
        
 
       </div>
