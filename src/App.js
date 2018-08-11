@@ -54,8 +54,12 @@ changeShelf=(shelf_name,title)=>{
            <Shelf title="Want to Read" Books={books_list} changeShelfValue={this.changeShelf}/> 
            <Shelf title="Read" Books={books_list} changeShelfValue={this.changeShelf}/></div>:<div>Loading</div>}
        
-
       </div>
+        <Link to="/search">
+            <div className="open-search">
+                <a>Add a book</a>
+            </div>
+        </Link>
     </div>
     )
   }
@@ -64,9 +68,12 @@ changeShelf=(shelf_name,title)=>{
 class App extends React.Component{
   render(){
     return(
-        <Router>
-           <Route exact path="/" component={Search} />
-        </Router>
+            <Router>
+               <div>
+               <Route exact path="/" component={Bookapp} />
+                <Route exact path="/search" component={Search} />
+                </div>
+            </Router>
       )
   }
 }
