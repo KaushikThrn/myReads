@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import * as BooksAPI from './BooksAPI'
 import Shelf from './Shelf'
+import Search from './Search'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Bookapp extends React.Component {
@@ -64,7 +65,7 @@ class App extends React.Component{
   render(){
     return(
         <Router>
-           <Route exact path="/" component={Bookapp} />
+           <Route exact path="/" component={Search} />
         </Router>
       )
   }
