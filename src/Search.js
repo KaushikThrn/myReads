@@ -2,16 +2,37 @@ import React from 'react'
 import './App.css'
 import * as BooksAPI from './BooksAPI'
 import Shelf from './Shelf'
+import Book from './Book'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 class Search extends React.Component {
-
+  constructor(props){
+    super(props);
+    this.props=props
+    this.querySearch=this.querySearch.bind(this)
+  }
+  state={
+    books_results:[]
+  }
+  querySearch=(query)=>{
+     BooksAPI.search(query,5).then((books) => {
+      if(query==''){this.setState({books_results:[]})}
+      else{this.setState({books_results:books})}
+      
+    })
+  }
+  changeShelf=(shelf_name,title)=>{
+        
+  }
   render(){
+    let isLength=this.state.books_results.length > 0;
     return(
       <div className="search-books">
             <div className="search-books-bar">
-              <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+            <Link to="/" >
+              <a className="close-search">Close</a>
+              </Link>
               <div className="search-books-input-wrapper">
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -21,12 +42,14 @@ class Search extends React.Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input type="text" placeholder="Search by title or author"/>
-
+                <input type="text" placeholder="Search by title or author" onChange={(event)=>{this.querySearch(event.target.value)}}/>
+                <div>{this.state.str}</div>
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <ol className="books-grid">
+                {isLength? this.state.books_results.map((book)=>(<li><Book Books={book} changeValueShelf={this.changeShelf}/></li>)):null}
+              </ol>
             </div>
           </div>
           )
