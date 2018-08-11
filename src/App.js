@@ -30,10 +30,10 @@ class Bookapp extends React.Component {
     })
 }
 
-changeShelf=(shelf_name,title)=>{
+changeShelf=(shelf_name,id)=>{
   let booksCopy=this.state.books_list
    booksCopy.map((book)=>{
-     if(book.title===title){
+     if(book.id===id){
          BooksAPI.update(book,shelf_name).then((response)=>{})
          book.shelf=shelf_name
      }

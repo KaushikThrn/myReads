@@ -9,8 +9,8 @@ class Book extends React.Component{
     this.changeTypeShelf=this.changeTypeShelf.bind(this);
   }
 
-	changeTypeShelf=(event,title)=>{
-       this.props.changeValueShelf(event.target.value,title)
+	changeTypeShelf=(event,id)=>{
+       this.props.changeValueShelf(event.target.value,id)
 	}
 	render(){
 		const {Books}=this.props
@@ -20,7 +20,7 @@ class Book extends React.Component{
                           <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 192, backgroundImage:`url(${Books.imageLinks.thumbnail})` }}></div>
                             <div className="book-shelf-changer">
-                              <select onChange={(e)=>{this.changeTypeShelf(e,Books.title)}}>
+                              <select onChange={(e)=>{this.changeTypeShelf(e,Books.id)}} value={Books.hasOwnProperty("shelf")? Books.shelf:"none"}>
                                 <option value="move" disabled>Move to...</option>
                                 <option value="currentlyReading" >Currently Reading</option>
                                 <option value="wantToRead" >Want to Read</option>

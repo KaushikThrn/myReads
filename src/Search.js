@@ -22,9 +22,18 @@ class Search extends React.Component {
       
     })
   }
-  changeShelf=(shelf_name,title)=>{
-        
-  }
+  changeShelf=(shelf_name,id)=>{
+  let booksCopy=this.state.books_results
+   booksCopy.map((book)=>{
+     if(book.id===id){
+         console.log(book.title,shelf_name,id)
+         BooksAPI.update(book,shelf_name).then((response)=>{})
+         book.shelf=shelf_name
+     }
+
+   })
+   this.setState({books_results:booksCopy})
+}
   render(){
     let isLength=this.state.books_results.length > 0;
     return(
