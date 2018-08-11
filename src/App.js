@@ -2,8 +2,9 @@ import React from 'react'
 import './App.css'
 import * as BooksAPI from './BooksAPI'
 import Shelf from './Shelf'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-class BooksApp extends React.Component {
+class Bookapp extends React.Component {
   Books={
     book_title:'The Hobbit',
     book_authors:'J.R.R. Tolkien',
@@ -59,6 +60,16 @@ changeShelf=(shelf_name,title)=>{
   }
 }
 
+class App extends React.Component{
+  render(){
+    return(
+        <Router>
+           <Route exact path="/" component={Bookapp} />
+        </Router>
+      )
+  }
+}
 
 
-export default BooksApp
+
+export default App
