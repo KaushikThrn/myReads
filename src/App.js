@@ -34,6 +34,7 @@ changeShelf=(shelf_name,title)=>{
   let booksCopy=this.state.books_list
    booksCopy.map((book)=>{
      if(book.title===title){
+         BooksAPI.update(book,shelf_name).then((response)=>{})
          book.shelf=shelf_name
      }
 
