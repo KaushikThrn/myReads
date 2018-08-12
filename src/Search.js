@@ -36,7 +36,7 @@ class Search extends React.Component {
 
          })
         }
-          this.setState({books_results:books,result:true})
+          this.setState({books_results:books})
           
     })
   }
@@ -53,9 +53,9 @@ class Search extends React.Component {
 }
 
   render(){
+    debugger;
     let isLength=this.state.books_results.length > 0;
     let result=!(this.state.books_results.hasOwnProperty("error"));
-    console.log(result,this.state.books_results)
     return(
       <div className="search-books">
             <div className="search-books-bar">
