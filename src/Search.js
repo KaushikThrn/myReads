@@ -16,9 +16,24 @@ class Search extends React.Component {
     books_results:[]
   }
   querySearch=(query)=>{
+    let Books_Shelf=[];
      BooksAPI.search(query,5).then((books) => {
       if(query==''){this.setState({books_results:[]})}
-      else{this.setState({books_results:books})}
+      else{
+
+         BooksAPI.getAll().then((books_shelf) => {
+          Books_Shelf=books_shelf;
+          for(let i=0;i<=Books_Shelf.length-1;i++){
+            for(let j=0;j<=books.length-1;j++){
+              if(Books_Shelf[i]["id"]===books[j]["id"]){
+                  books[j]["shelf"]=Books_Shelf[i]["shelf"];
+                  break;
+                }
+            }
+          }
+          this.setState({books_results:books})
+         })
+        }
       
     })
   }
@@ -26,7 +41,6 @@ class Search extends React.Component {
   let booksCopy=this.state.books_results
    booksCopy.map((book)=>{
      if(book.id===id){
-         console.log(book.title,shelf_name,id)
          BooksAPI.update(book,shelf_name).then((response)=>{})
          book.shelf=shelf_name
      }
