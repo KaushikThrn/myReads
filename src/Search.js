@@ -13,12 +13,14 @@ class Search extends React.Component {
     this.querySearch=this.querySearch.bind(this)
   }
   state={
-    books_results:[]
+    books_results:[],
+    query:''
   }
   querySearch=(query)=>{
     let Books_Shelf=[];
-     BooksAPI.search(query,5).then((books) => {
-      if(query==''){this.setState({books_results:[]})}
+    this.setState({query:query})
+     BooksAPI.search(query,20).then((books) => {
+      if(query===''){this.setState({books_results:[]})}
       else{
 
          BooksAPI.getAll().then((books_shelf) => {
@@ -31,10 +33,11 @@ class Search extends React.Component {
                 }
             }
           }
-          this.setState({books_results:books})
+
          })
         }
-      
+          this.setState({books_results:books,result:true})
+          
     })
   }
   changeShelf=(shelf_name,id)=>{
@@ -48,8 +51,11 @@ class Search extends React.Component {
    })
    this.setState({books_results:booksCopy})
 }
+
   render(){
     let isLength=this.state.books_results.length > 0;
+    let result=!(this.state.books_results.hasOwnProperty("error"));
+    console.log(result,this.state.books_results)
     return(
       <div className="search-books">
             <div className="search-books-bar">
@@ -57,23 +63,16 @@ class Search extends React.Component {
               <a className="close-search">Close</a>
               </Link>
               <div className="search-books-input-wrapper">
-                {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
                 <input type="text" placeholder="Search by title or author" onChange={(event)=>{this.querySearch(event.target.value)}}/>
                 <div>{this.state.str}</div>
               </div>
             </div>
+            {result?
             <div className="search-books-results">
               <ol className="books-grid">
                 {isLength? this.state.books_results.map((book)=>(<li><Book Books={book} changeValueShelf={this.changeShelf}/></li>)):null}
               </ol>
-            </div>
+            </div>:<div className="search-books-results">No Results found.Please try later</div>}
           </div>
           )
   }

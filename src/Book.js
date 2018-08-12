@@ -14,8 +14,7 @@ class Book extends React.Component{
 	}
 	render(){
 		const {Books}=this.props
-		
-		return(
+		return(  
              <div className="book">
                           <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 192, backgroundImage:`url(${Books.imageLinks.thumbnail})` }}></div>
@@ -30,7 +29,7 @@ class Book extends React.Component{
                             </div>
                           </div>
                           <div className="book-title">{Books.title}</div>
-                          <div className="book-authors">{Books.authors[0]}</div>
+                          <div className="book-authors">{Books.hasOwnProperty("authors")?Books.authors[0]:"No author"}</div>
                         </div>
 			)
 	}
