@@ -13,9 +13,9 @@ class Book extends React.Component{
       //pass the new shelf value and the book id to the parent component
       this.props.changeValueShelf(event.target.value, id)
   }
-	render(){
-		const {Books}=this.props
-		return(  
+  render(){
+    const {Books}=this.props
+    return(  
              <div className="book">
                           <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 192, backgroundImage:`url(${Books.imageLinks.thumbnail})` }}></div>
@@ -32,8 +32,8 @@ class Book extends React.Component{
                           <div className="book-title">{Books.title}</div>
                           <div className="book-authors">{Books.hasOwnProperty("authors")?Books.authors[0]:"No author"}</div>
                         </div>
-			)
-	}
+      )
+  }
 
 }
 export default Book;
