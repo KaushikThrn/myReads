@@ -3,15 +3,16 @@ import './App.css'
 import * as BooksAPI from './BooksAPI'
 
 class Book extends React.Component{
-  constructor(props){
-    super(props);
-    this.props=props;
-    this.changeTypeShelf=this.changeTypeShelf.bind(this);
+  constructor(props) {
+      super(props);
+      this.props = props;
+      this.changeTypeShelf = this.changeTypeShelf.bind(this);
   }
 
-	changeTypeShelf=(event,id)=>{
-       this.props.changeValueShelf(event.target.value,id)
-	}
+  changeTypeShelf = (event, id) => {
+      //pass the new shelf value and the book id to the parent component
+      this.props.changeValueShelf(event.target.value, id)
+  }
 	render(){
 		const {Books}=this.props
 		return(  
