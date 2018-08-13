@@ -73,7 +73,7 @@ changeShelf = (shelf_name, id) => {
             {result?
             <div className="search-books-results">
               <ol className="books-grid">
-                {isLength? this.state.books_results.map((book)=>(<li><Book Books={book} key={book.id} changeValueShelf={this.changeShelf}/></li>)):null}
+                {isLength? this.state.books_results.map((book)=>(<li key={book.id}><Book Books={book} changeValueShelf={this.changeShelf}/></li>)):null}
               </ol>
             </div>:<div className="search-books-results">No Results found.Please try later</div>}
           </div>
