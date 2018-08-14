@@ -30,7 +30,7 @@ class Book extends React.Component{
                             </div>
                           </div>
                           <div className="book-title">{Books.title}</div>
-                          <div className="book-authors">{Books.hasOwnProperty("authors")?Books.authors[0]:"No author"}</div>
+                          {Books.hasOwnProperty("authors")? Books.authors.map((author)=>(<div className="book-authors">{author}</div>)):<div className="book-authors">"No author"</div>}
                         </div>
       )
   }
