@@ -18,7 +18,7 @@ class Book extends React.Component{
     return(  
              <div className="book">
                           <div className="book-top">
-                            <div className="book-cover" style={{ width: 128, height: 192, backgroundImage:`url(${Books.imageLinks.thumbnail})` }}></div>
+                           {Books.hasOwnProperty("imageLinks")?<div className="book-cover" style={{ width: 128, height: 192, backgroundImage:`url(${Books.imageLinks.thumbnail})` }}></div>:<div className="book-cover" style={{ width: 128, height: 192, backgroundImage:null }}></div>}
                             <div className="book-shelf-changer">
                               <select onChange={(e)=>{this.changeTypeShelf(e,Books.id)}} value={Books.hasOwnProperty("shelf")? Books.shelf:"none"}>
                                 <option value="move" disabled>Move to...</option>
@@ -30,7 +30,7 @@ class Book extends React.Component{
                             </div>
                           </div>
                           <div className="book-title">{Books.title}</div>
-                          {Books.hasOwnProperty("authors")? Books.authors.map((author)=>(<div className="book-authors">{author}</div>)):<div className="book-authors">"No author"</div>}
+                          {Books.hasOwnProperty("authors")? Books.authors.map((author,index)=>(<div className="book-authors" key={index}>{author}</div>)):<div className="book-authors">"No author"</div>}
                         </div>
       )
   }
