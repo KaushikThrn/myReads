@@ -20,9 +20,11 @@ querySearch = (query) => {
     //perform a search when the query is changed
     let Books_Shelf = [];
     this.setState({ query: query })
-    BooksAPI.search(query, 20)
+    if (query == "") { this.setState({ books_results: [] }) }
+    else{    
+        
+        BooksAPI.search(query, 20)
         .then((books) => {
-            if (query === '') { this.setState({ books_results: [] }) } else {
                 //if the book has already been added to a shelf, then add the shelf attribute to the book
                 BooksAPI.getAll()
                     .then((books_shelf) => {
@@ -35,12 +37,11 @@ querySearch = (query) => {
                                 }
                             }
                         }
-
+                     this.setState({ books_results: books })
                     })
-            }
-            this.setState({ books_results: books })
 
-        })
+        })}
+
 }
 changeShelf = (shelf_name, id) => {
     //if the shelf is changed, update the value in the database
